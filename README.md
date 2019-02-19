@@ -1,68 +1,159 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Demo
 
-## Available Scripts
+## 1、项目搭建
 
-In the project directory, you can run:
+- 安装脚手架
 
-### `npm start`
+```
+npm install -g create-react-app
+```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 创建项目
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```
+create-react-app projectName
+```
 
-### `npm test`
+- 运行项目
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+npm start
+```
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## 2、项目开发准备
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1、安装依赖
 
-### `npm run eject`
+> 路由依赖，4.x以后使用react-router-dom中的对象方法
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+npm install react-router
+npm install react-router-dom
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> UI框架，使用阿里的ant design框架
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+npm install antd
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+> 响应式工具库，用于判断移动设备
 
-## Learn More
+```
+npm install react-responsive
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> 使用sass预处理样式
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+//暴露配置文件
+npm run eject
+//只需安装node-sass，配置文件中自带sass-loader
+npm install node-sass
+//如果下载失败，更换下载源重试
+npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
+```
 
-### Code Splitting
+### 2、模块划分
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+![](./image/App.jpg)
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
+### 3、目录结构
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+│  .eslintrc
+│  .gitignore
+│  package.json
+│  README.md
+│  
+├─build             //build后的文件
+│  │  favicon.ico
+│  │  index.html 
+│  └─static
+│      ├─css    
+│      └─js
+│              
+├─config            //配置文件
+│  │  env.js
+│  │  paths.js
+│  │  webpack.config.js
+│  │  webpackDevServer.config.js
+│  │  
+│  └─jest             //测试目录
 
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+├─public
+│      favicon.ico
+│      index.html
+│      manifest.json
+│      
+├─scripts              // 运行命令  
+│      build.js
+│      start.js
+│      test.js
+│      
+└─src                          //项目文件
+​    │  App.js                 //实例入口
+​    │  App.scss             //实例样式
+​    │  App.test.js
+​    │  index.css            //入口样式
+​    │  index.js              //入口
+​    │  serviceWorker.js
+​    │  
+​    ├─api                     //封装接口
+​    ├─assets               //静态资源
+​    │  ├─css
+​    │  └─images
+​    ├─components
+​    │  ├─common                  //公共组件
+​    │  │      comment.js
+​    │  │      form_comment.js
+​    │  │      login.js
+​    │  │      modal.js
+​    │  │      register.js
+​    │  │      
+​    │  ├─mobile
+​    │  │  │  index.js              //移动端入口
+​    │  │  │  
+​    │  │  └─com
+​    │  │          load_more.js
+​    │  │          mobile_content.js
+​    │  │          mobile_footer.js
+​    │  │          mobile_header.js
+​    │  │          mobile_header.scss
+​    │  │          news.js
+​    │  │          news_component.js
+​    │  │          news_component.scss
+​    │  │          news_details.js
+​    │  │          
+​    │  └─pc                       //pc端入口
+​    │      │  index.js
+​    │      │  
+​    │      └─com
+​    │          │  footer.js
+​    │          │  header.js
+​    │          │  header.scss
+​    │          │  logout.js
+​    │          │  nav.js
+​    │          │  
+​    │          └─news
+​    │                  image_block.js
+​    │                  image_news_component.js
+​    │                  image_news_component.scss
+​    │                  image_single.js
+​    │                  image_single_component.js
+​    │                  image_single_component.scss
+​    │                  news_block.js
+​    │                  news_component.js
+​    │                  news_component.scss
+​    │                  news_container.js
+​    │                  news_details.js
+​    │                  
+​    ├─config          //自定义配置
+​    ├─router         //路由配置
+​    ├─store           //redux存储
+​    └─utils             //工具目录
