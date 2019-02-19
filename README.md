@@ -60,12 +60,9 @@ npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
 
 ![](./image/App.jpg)
 
-
-
-
-
 ### 3、目录结构
 
+```
 │  .eslintrc
 │  .gitignore
 │  package.json
@@ -97,63 +94,66 @@ npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
 │      test.js
 │      
 └─src                          //项目文件
-​    │  App.js                 //实例入口
-​    │  App.scss             //实例样式
-​    │  App.test.js
-​    │  index.css            //入口样式
-​    │  index.js              //入口
-​    │  serviceWorker.js
-​    │  
-​    ├─api                     //封装接口
-​    ├─assets               //静态资源
-​    │  ├─css
-​    │  └─images
-​    ├─components
-​    │  ├─common                  //公共组件
-​    │  │      comment.js
-​    │  │      form_comment.js
-​    │  │      login.js
-​    │  │      modal.js
-​    │  │      register.js
-​    │  │      
-​    │  ├─mobile
-​    │  │  │  index.js              //移动端入口
-​    │  │  │  
-​    │  │  └─com
-​    │  │          load_more.js
-​    │  │          mobile_content.js
-​    │  │          mobile_footer.js
-​    │  │          mobile_header.js
-​    │  │          mobile_header.scss
-​    │  │          news.js
-​    │  │          news_component.js
-​    │  │          news_component.scss
-​    │  │          news_details.js
-​    │  │          
-​    │  └─pc                       //pc端入口
-​    │      │  index.js
-​    │      │  
-​    │      └─com
-​    │          │  footer.js
-​    │          │  header.js
-​    │          │  header.scss
-​    │          │  logout.js
-​    │          │  nav.js
-​    │          │  
-​    │          └─news
-​    │                  image_block.js
-​    │                  image_news_component.js
-​    │                  image_news_component.scss
-​    │                  image_single.js
-​    │                  image_single_component.js
-​    │                  image_single_component.scss
-​    │                  news_block.js
-​    │                  news_component.js
-​    │                  news_component.scss
-​    │                  news_container.js
-​    │                  news_details.js
-​    │                  
-​    ├─config          //自定义配置
-​    ├─router         //路由配置
-​    ├─store           //redux存储
-​    └─utils             //工具目录
+    │  App.js                 //实例入口
+    │  App.scss             //实例样式
+    │  App.test.js
+    │  index.css            //入口样式
+    │  index.js              //入口
+    │  serviceWorker.js
+    │  
+    ├─api                     //封装接口
+    ├─assets               //静态资源
+    │  ├─css
+    │  └─images
+    ├─components
+    │  ├─common                  //公共组件
+    │  │      comment.js
+    │  │      form_comment.js
+    │  │      login.js
+    │  │      modal.js
+    │  │      register.js
+    │  │      
+    │  ├─mobile
+    │  │  │  index.js              //移动端入口
+    │  │  │  
+    │  │  └─com
+    │  │          load_more.js
+    │  │          mobile_content.js
+    │  │          mobile_footer.js
+    │  │          mobile_header.js
+    │  │          mobile_header.scss
+    │  │          news.js
+    │  │          news_component.js
+    │  │          news_component.scss
+    │  │          news_details.js
+    │  │          
+    │  └─pc                       //pc端入口
+    │      │  index.js
+    │      │  
+    │      └─com
+    │          │  footer.js
+    │          │  header.js
+    │          │  header.scss
+    │          │  logout.js
+    │          │  nav.js
+    │          │  
+    │          └─news
+    │                  image_block.js
+    │                  image_news_component.js
+    │                  image_news_component.scss
+    │                  image_single.js
+    │                  image_single_component.js
+    │                  image_single_component.scss
+    │                  news_block.js
+    │                  news_component.js
+    │                  news_component.scss
+    │                  news_container.js
+    │                  news_details.js
+    │                  
+    ├─config          //自定义配置
+    ├─router          //路由配置
+    ├─store           //redux存储
+    └─utils           //工具目录
+
+```
+
