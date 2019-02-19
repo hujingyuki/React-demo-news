@@ -3,6 +3,7 @@
 <p text-align="center">
     <img alt="react" src="https://img.shields.io/badge/react-16.8.2-brightgreen.svg?style=for-the-badge"/>
     <img alt="react--router" src ="https://img.shields.io/badge/react--router-4.3.1-blue.svg?style=for-the-badge"/>
+    <img alt="react--router" src ="https://img.shields.io/badge/react--router--config-4.4.0--beta.6-critical.svg?style=for-the-badge"/>
     <img alt="redux" src ="https://img.shields.io/badge/redux-4.0.1-ff69b4.svg?style=for-the-badge"/>
     <img alt="react--responsive" src ="https://img.shields.io/badge/react--responsive-6.1.1-yellowgreen.svg?style=for-the-badge"/>
     <img alt="react--responsive" src ="https://img.shields.io/badge/sass--loader-7.1.0-blueviolet.svg?style=for-the-badge"/>
@@ -34,7 +35,7 @@ npm start
 
 ## 2、项目开发准备
 
-### 1、安装依赖
+### 1、安装依赖以及相关配置
 
 > 路由依赖，4.x以后使用react-router-dom中的对象方法
 
@@ -71,6 +72,22 @@ npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
 ```
 npm install redux
 npm install react-redux
+```
+
+> 配置alias @方便import操作
+
+```javascript
+//webpack.config中找到resolve
+
+resolve: {
+      extensions: paths.moduleFileExtensions
+        .map(ext => `.${ext}`)
+        .filter(ext => useTypeScript || !ext.includes('ts')),
+      alias: {
+        'react-native': 'react-native-web',
+        '@': paths.appSrc
+      }
+ }
 ```
 
 
