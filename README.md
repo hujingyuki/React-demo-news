@@ -1,5 +1,15 @@
 # React Demo
 
+<p text-align="center">
+    <img alt="react" src="https://img.shields.io/badge/react-16.8.2-brightgreen.svg?style=for-the-badge"/>
+    <img alt="react--router" src ="https://img.shields.io/badge/react--router-4.3.1-blue.svg?style=for-the-badge"/>
+    <img alt="redux" src ="https://img.shields.io/badge/redux-4.0.1-ff69b4.svg?style=for-the-badge"/>
+    <img alt="react--responsive" src ="https://img.shields.io/badge/react--responsive-6.1.1-yellowgreen.svg?style=for-the-badge"/>
+    <img alt="react--responsive" src ="https://img.shields.io/badge/sass--loader-7.1.0-blueviolet.svg?style=for-the-badge"/>
+</p>
+
+
+
 ## 1、项目搭建
 
 - 安装脚手架
