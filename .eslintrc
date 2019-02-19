@@ -1,9 +1,5 @@
 {
   "extends":"eslint-config-react-app",
-  "ecmaFeatures":{
-    "jsx":true,
-    "modules":true
-  },
   "env":{
     "browser":true,
     "node":true,
