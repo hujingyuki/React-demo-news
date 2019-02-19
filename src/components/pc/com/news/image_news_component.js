@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card} from 'antd';
 import {Link} from 'react-router-dom';
-import './image_news_component.scss';
+import '@/assets/css/image_news_component.scss';
 
 export default class ImageNewsComponent extends React.Component {
   render(){

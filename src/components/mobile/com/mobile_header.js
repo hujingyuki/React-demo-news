@@ -2,7 +2,7 @@ import React from 'react';
 import {Icon} from 'antd';
 import {Link} from 'react-router-dom';
 import LoginRegisterModal from '../../common/modal';
-import './mobile_header.scss'
+import '@/assets/css/mobile_header.scss';
 
 export default class MobileHeader extends React.Component {
   constructor(props) {

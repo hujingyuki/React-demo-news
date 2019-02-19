@@ -1,3 +1,10 @@
+/*
+ * @Author: jinghu5 
+ * @Date: 2019-02-19 11:41:36 
+ * @Last Modified by:   jinghu5 
+ * @Last Modified time: 2019-02-19 11:41:36 
+ */
+
 import React from 'react';
 import { Row, Col, Card, Icon} from 'antd';
 import FormComment from './form_comment';

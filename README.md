@@ -66,6 +66,15 @@ npm install node-sass
 npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
 ```
 
+> redux状态管理
+
+```
+npm install redux
+npm install react-redux
+```
+
+
+
 ### 2、模块划分
 
 ![](./image/App.jpg)

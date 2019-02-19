@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Icon } from "antd";
 import Nav from './nav';
 import LoginRegisterModal from '../../common/modal';
-import './header.scss';
+import '@/assets/css/header.scss';
 
 export default class PCHeader extends React.Component{
   constructor(props){

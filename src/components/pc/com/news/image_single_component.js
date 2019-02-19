@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Card} from 'antd';
-import './image_single_component.scss';
+import '@/assets/css/image_single_component.scss';
 
 export default class ImageSingleNewComponent extends React.Component{
   render(){

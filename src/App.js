@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-import './App.scss';
+import '@/assets/css/App.scss';
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import MediaQuery from 'react-responsive';

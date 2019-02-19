@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import './news_component.scss'
+import '@/assets/css/mobile_news_component.scss'
 
 export default class MobileNewsComponent extends React.Component{
 	render(){
