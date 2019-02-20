@@ -1,24 +1,12 @@
 import React from 'react';
 import Logout from './logout';
-import {Menu,Icon} from 'antd';
+import { Menu, Icon, Button} from 'antd';
 import {Link} from 'react-router-dom';
+// 引入connect函数用来生成Redux组件
+import { connect } from 'react-redux';
+import { reverseNav } from '@/store/actions';
 
-export default class Nav extends React.Component{
-  constructor(props){
-    super(props);
-    this.state ={
-      MenuList:[
-        {key:'top',link:'/top',name:'头条',icon:'fire'},
-        {key:'shehui',link:'/shehui',name:'社会',icon:'api'},
-        {key:'guonei',link:'/guonei',name:'国内',icon:'trademark'},
-        {key:'guoji',link:'/guoji',name:'国际',icon:'global'},
-        {key:'yule',link:'/yule',name:'娱乐',icon:'gold'},
-        {key:'tiyu',link:'/tiyu',name:'体育',icon:'paper-clip'},
-        {key:'keji',link:'/keji',name:'科技',icon:'rocket'},
-        {key:'shishang',link:'/shishang',name:'时尚',icon:'crown'},
-      ]
-    }
-  }
+class Nav extends React.Component {
   render(){
     const userShow = this.props.hasLogined ? 
       (<Menu.Item key='logout'>
@@ -28,7 +16,7 @@ export default class Nav extends React.Component{
         <Icon type='login'/>注册/登录
       </Menu.Item>);
     
-    let navList = this.state.MenuList.map((item,index)=> (
+    let navList = this.props.MenuList.map((item,index)=> (
       <Menu.Item key={item.key}>
         <Link to={item.link}>
           <Icon type={item.icon}/>{item.name}
@@ -36,10 +24,30 @@ export default class Nav extends React.Component{
       </Menu.Item>
     ))
     return (
-      <Menu mode='horizontal' selectedKeys={[this.props.current]} onClick={this.props.menuItemClick}>
-        {navList}
-        {userShow}
-      </Menu>
+      <main>
+        <Menu mode='horizontal' selectedKeys={[this.props.current]} onClick={this.props.menuItemClick}>
+          {navList}
+          {userShow}   
+        </Menu>
+        {/* <Button onClick={()=>{this.props.dispatch(reverseNav())}} type='primary'>反转菜单</Button> */}
+        <Button onClick={this.props.handClick} type='primary'>倒置</Button>
+      </main>
     )
   }
 }
+
+//redux
+const mapStateToProps = (state, ownProps) => {
+  return {
+    MenuList: state.nav
+  };
+};
+
+//也可以直接调用this.props.dispatch
+const mapDispatchToProps = dispatch => ({
+  handClick() {
+    dispatch(reverseNav());
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)
