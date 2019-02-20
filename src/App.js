@@ -7,10 +7,16 @@ import PCApp from './components/pc';
 import { renderRoutes } from 'react-router-config'
 import {PC_Router,Mobile_Router} from './router'
 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import  appReducer from './store';
+
+const store = createStore(appReducer);
+
 class App extends Component {
   render() {
     return (
-      <div>
+      <Provider store= {store}>
         {/* PC端 */}
         <MediaQuery query='(min-device-width:1224px)'>
           <Router>
@@ -27,7 +33,7 @@ class App extends Component {
             </div>
           </Router>
         </MediaQuery>
-      </div>
+      </Provider>
     );
   }
 }
