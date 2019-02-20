@@ -2,7 +2,7 @@
  * @Author: jinghu5 
  * @Date: 2019-02-20 11:17:28 
  * @Last Modified by: jinghu5
- * @Last Modified time: 2019-02-20 14:45:15
+ * @Last Modified time: 2019-02-20 16:23:04
  */
 
 //1.定义初始化变量
@@ -16,15 +16,11 @@ let initialState = {
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGIN':
-      return {
-        ...state,
-        user: action.user
-      }
+      return  action.user;
     case 'LOGOUT':
-    return {
-      ...state,
-      user: initialState
-    }
+      return {
+        user: initialState
+      }
     default:
       return state
   }
