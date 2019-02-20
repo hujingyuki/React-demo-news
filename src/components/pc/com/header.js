@@ -18,9 +18,7 @@ class PCHeader extends React.Component{
   //组件加载之前
   componentWillMount(){
     this.setState({ current: this.getCurrentPath() });
-    setInterval(()=>{
-      console.log(this.props.userInfo);
-    },6000)
+    
     if (localStorage.userId && localStorage.userId !== '') {
       this.props.toLogin({userId:localStorage.userId,userName:localStorage.userName,hasLogined:true});
     }
