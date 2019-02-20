@@ -3,20 +3,32 @@ import { Row, Col, Icon } from "antd";
 import Nav from './nav';
 import LoginRegisterModal from '../../common/modal';
 import '@/assets/css/header.scss';
+import PropTypes from 'prop-types';
+
 
 export default class PCHeader extends React.Component{
+  /**
+   * 根据路由选中菜单
+   * @returns {String} 当前路径
+   */
+  getCurrentPath = () => {
+    const PATH = this.context.router ? this.context.router.history.location.pathname : null;
+    return (PATH && PATH !== '/') ? PATH.replace('/','') : 'top';
+  }
+
   constructor(props){
     super(props);
     this.state={
       hasLogined:false,
       userName:'',
       userId:'',
-      current:'top',
+      current: '',
       modalVisible: false
     }
   }
   //组件加载之前
   componentWillMount(){
+    this.setState({ current: this.getCurrentPath() });
     if (localStorage.userId && localStorage.userId !== '') {
       this.setState({userId:localStorage.userId,userName:localStorage.userName,hasLogined:true});
     }
@@ -78,3 +90,8 @@ export default class PCHeader extends React.Component{
     this.setState({hasLogined: false, userName: '', userId: ''});
   };
 }
+
+PCHeader.contextTypes = {
+  router:PropTypes.object.isRequired
+};
+
