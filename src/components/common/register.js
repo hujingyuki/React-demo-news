@@ -1,5 +1,6 @@
 import React from 'react';
 import {Icon, message, Form, Input, Button} from 'antd';
+import { $api } from '@/config';
 
 //注册表单组件
 class RegisterForm extends React.Component {
@@ -15,16 +16,12 @@ class RegisterForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, formData) => {
       if (!err) {
-        let myFetchOptions = {method: 'GET'};
-        //发起注册数据请求
-        fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=register&username=" + formData.r_userName + "&password=" + formData.r_password + "&r_userName=" + formData.r_userName + "&r_password=" + formData.r_password + "&r_confirmPassword=" + formData.r_confirmPassword, myFetchOptions)
-          .then(response => response.json()).then(json => {
-          if (json) {
-            message.success("注册成功");
-            //设置模态框消失
-            this.props.setModalVisible(false);
-          }
-        });
+        let json = this.register(formData);
+        if (json) {
+          message.success("注册成功");
+          //设置模态框消失
+          this.props.setModalVisible(false);
+        }
       }
     })
   }
@@ -83,6 +80,16 @@ class RegisterForm extends React.Component {
         </Form.Item>
       </Form>
     );
+  }
+
+  async register(formData){
+    return await $api['apis/register']({
+      username: formData.r_userName,
+      password: formData.r_password,
+      r_userName: formData.r_userName,
+      r_password: formData.r_password,
+      r_confirmPassword: formData.r_password,
+    });
   }
 }
 

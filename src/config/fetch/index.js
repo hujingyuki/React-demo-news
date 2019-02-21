@@ -3,7 +3,7 @@
  * @Author: jinghu5 
  * @Date: 2019-02-20 16:58:00 
  * @Last Modified by: jinghu5
- * @Last Modified time: 2019-02-21 11:40:01
+ * @Last Modified time: 2019-02-21 14:15:41
  */
 
 import _assign from 'lodash/assign';
@@ -91,15 +91,7 @@ class Api {
             outerParams :
             _merge({}, params, outerParams);
 
-          let options = _normoalize(_assign({
-            url,
-            desc,
-            baseURL,
-            _data
-          }), _assign(FETCH_DEFAULT_CONFIG, {
-            method: method
-          }, outerOptions));
-          console.log('fetch', options);
+          let options = _normoalize(_assign({ url, desc, baseURL, _data }), _assign(FETCH_DEFAULT_CONFIG, { method: method }, outerOptions));
           return fetch(options.reqURL, options.config).then((res) => {
             if (res.status === 200) {
               return res.json();

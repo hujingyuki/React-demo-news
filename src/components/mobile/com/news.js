@@ -2,6 +2,7 @@ import React from 'react';
 import MobileNewsComponent from './news_component';
 import LoadMore from './load_more';
 import {Icon} from 'antd';
+import { $api } from '@/config';
 
 export default class MobileNews extends React.Component {
 	constructor(props) {
@@ -15,10 +16,7 @@ export default class MobileNews extends React.Component {
 	}
 
 	componentDidMount() {
-		let fetchOption = {method: 'GET'};
-		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=" + this.props.type + "&count=" + this.state.count, fetchOption)
-		.then(response => response.json())
-		.then(json => this.setState({news: json}));
+		this.getnews();
 	}
 
 	//加载更多方法
@@ -27,10 +25,7 @@ export default class MobileNews extends React.Component {
 		let count=this.state.count+10;
 		if (count>0&&count<300){
 			this.setState({count:count});
-			let fetchOption = {method: 'GET'};
-			fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=" + this.props.type + "&count=" + this.state.count, fetchOption)
-				.then(response => response.json())
-				.then(json => this.setState({news: json}));
+			this.getnews();
 			this.setState({isLoadingMore: false});
 		}else {
 			this.setState({isLoading:false, hasMore:false})
@@ -54,4 +49,9 @@ export default class MobileNews extends React.Component {
 			</div>
 		);
 	}
+
+	async getnews(){
+    let res = await $api['apis/getnews']({type: this.props.type , count: this.state.count});
+    this.setState({news: res});
+  }
 }

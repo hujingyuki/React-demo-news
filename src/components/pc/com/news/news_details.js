@@ -2,6 +2,7 @@ import React from 'react';
 import {Row, Col} from 'antd';
 import PCNewsImageBlock from './image_block';
 import Comment from '../../../common/comment';
+import { $api } from '@/config';
 
 export default class PCNewsDetail extends React.Component {
   constructor(props) {
@@ -12,14 +13,7 @@ export default class PCNewsDetail extends React.Component {
   }
 
   componentDidMount() {
-    let fetchOption = { method: 'GET' };
-    let uniquekey = this.props.match.params ? this.props.match.params.uniquekey : '';
-    fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnewsitem&uniquekey=" + uniquekey, fetchOption)
-      .then(response => response.json())
-      .then(json => {
-        this.setState({newsItem: json});
-        document.title = this.state.newsItem.title + "-新闻头条";
-      });
+    this.getnewsitem();
   }
 
   createMarkup() {
@@ -43,5 +37,12 @@ export default class PCNewsDetail extends React.Component {
         </Row>
       </div>
     );
+  }
+
+  async getnewsitem() {
+    let uniquekey = this.props.match.params ? this.props.match.params.uniquekey : '';
+    let res = await $api['apis/getnewsitem']({uniquekey:uniquekey});
+    this.setState({newsItem: res});
+    document.title = this.state.newsItem.title + "-新闻头条";
   }
 }

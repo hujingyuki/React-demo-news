@@ -3,6 +3,7 @@ import {Row, Col} from 'antd';
 import MobileHeader from './mobile_header';
 import MobileFooter from './mobile_footer';
 import Comment from '../../common/comment';
+import { $api } from '@/config';
 
 export default class MobileNewsDetail extends React.Component {
   constructor() {
@@ -13,13 +14,7 @@ export default class MobileNewsDetail extends React.Component {
   }
 
   componentDidMount() {
-    let fetchOption = { method: 'GET' };
-    fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnewsitem&uniquekey=" + this.props.match.params.uniquekey, fetchOption)
-    .then(response => response.json())
-    .then(json => {
-      this.setState({newsItem: json});
-      document.title = this.state.newsItem.title + "-新闻头条";
-    });
+    this.getnewsitem();
   }
 
   createMarkup() {
@@ -42,4 +37,12 @@ export default class MobileNewsDetail extends React.Component {
     </div>
     );
   }
+
+  async getnewsitem() {
+    let uniquekey = this.props.match.params ? this.props.match.params.uniquekey : '';
+    let res = await $api['apis/getnewsitem']({uniquekey:uniquekey});
+    this.setState({newsItem: res});
+    document.title = this.state.newsItem.title + "-新闻头条";
+  }
+
 }

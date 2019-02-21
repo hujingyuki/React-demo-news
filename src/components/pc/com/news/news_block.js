@@ -1,6 +1,7 @@
 import React from 'react';
 import {Icon} from 'antd';
 import PCNewsComponent from './news_component';
+import { $api } from '@/config';
 
 export default class PCNewsBlock extends React.Component {
   constructor(props) {
@@ -10,9 +11,7 @@ export default class PCNewsBlock extends React.Component {
 
   //页面渲染后触发
   componentDidMount() {
-    let fetchOption = {method: 'GET'};
-    fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=" + this.props.type + "&count=" + this.props.count, fetchOption)
-      .then(response => response.json()).then(json => this.setState({news: json}));
+    this.getnews();
   }
 
 
@@ -27,5 +26,10 @@ export default class PCNewsBlock extends React.Component {
         {newsCard}
       </div>
     );
+  }
+
+  async getnews(){
+    let res = await $api['apis/getnews']({type: this.props.type , count: this.props.count});
+    this.setState({news: res});
   }
 }

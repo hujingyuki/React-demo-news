@@ -95,7 +95,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   //登录
   toLogin(user) {
-    console.log('toLogin',user)
     localStorage.userName = user.userName;
     localStorage.userId = user.userId;
     dispatch({type:'LOGIN',user:user});

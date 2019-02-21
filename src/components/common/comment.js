@@ -1,14 +1,15 @@
 /*
  * @Author: jinghu5 
  * @Date: 2019-02-19 11:41:36 
- * @Last Modified by:   jinghu5 
- * @Last Modified time: 2019-02-19 11:41:36 
+ * @Last Modified by: jinghu5
+ * @Last Modified time: 2019-02-21 14:12:36
  */
 
 import React from 'react';
 import { Row, Col, Card, Icon} from 'antd';
 import FormComment from './form_comment';
 import { message} from 'antd';
+import { $api } from '@/config';
 
 export default class Comment extends React.Component {
   constructor(props) {
@@ -17,26 +18,17 @@ export default class Comment extends React.Component {
   }
 
   componentDidMount() {
-    let myFetchOptions = { method: 'GET' };
-    fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getcomments&uniquekey=" + this.props.uniquekey, myFetchOptions)
-    .then(response => response.json()).then(json => {
-      this.setState({comments: json});
-    })
+    this.getcomments();
   };
 
-  handleSubmit(data) {
-    let myFetchOptions = { method: 'GET' };
+  async handleSubmit(data) {
     //如果用户登录了
-    console.log(localStorage.userId)
     if (localStorage.userId) {
       //提交了之后发送请求添加评论
-      fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=comment&userid=" + localStorage.userId + "&uniquekey=" + this.props.uniquekey + "&commnet=" + data , myFetchOptions)
-      .then(response => response.json())
-      .then(json => {
-        //请求成功之后，重新加载页面
-        this.componentDidMount();
-        message.success('评论成功啦~');
-      })
+      await $api['apis/comment']({uniquekey:this.props.uniquekey,userid:localStorage.userId,commnet:data});
+      //请求成功之后，重新加载页面
+      this.componentDidMount();
+      message.success('评论成功啦~');
     } else {
       message.info('请先登录哦亲~');
       return;
@@ -61,5 +53,10 @@ export default class Comment extends React.Component {
         </Col>
       </Row>
     );
+  }
+
+  async getcomments(){
+    let res = await $api['apis/getcomments']({uniquekey:this.props.uniquekey});
+    this.setState({comments: res});
   }
 }

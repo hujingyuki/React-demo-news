@@ -1,5 +1,6 @@
 import React from 'react';
 import {Icon, Form, Input, Button,Checkbox} from 'antd';
+import { $api } from '@/config';
 
 //登录表单组件
 class LoginForm extends React.Component {
@@ -9,26 +10,13 @@ class LoginForm extends React.Component {
   }
 
   //motal框中的处理登录提交表单
-  handleLoginSubmit(e) {
+  async handleLoginSubmit(e) {
     //页面开始向API进行提交数据
     //阻止submit事件的默认行为
     e.preventDefault();
     this.props.form.validateFields((err, formData) => {
       if (!err) {
-        let myFetchOptions = {method: 'GET'};
-        fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=login&username=" + formData.userName + "&password=" + formData.password + "&r_userName=" + formData.userName + "&r_password=" + formData.password + "&r_confirmPassword=" + formData.password, myFetchOptions)
-        .then(response => response.json()).then(json => {
-          if (json !== null) {
-            console.log(json);
-            let userLogin = {userName: json.NickUserName, userId: json.UserId};
-            this.props.login(userLogin);
-            //设置模态框消失
-            this.props.setModalVisible(false);
-          } else {
-            //如果json为null，表示用户名密码不存在
-            this.setState({hasUser: '用户名或密码错误'});
-          }
-        });
+        this.login(formData);
       }
     });
   }
@@ -73,6 +61,22 @@ class LoginForm extends React.Component {
         </Form.Item>
         </Form>
       );
+  }
+
+  async login(formData){
+    let json = await $api['apis/login']({
+      username: formData.userName,
+      password: formData.password
+    })
+    if (json !== null) {
+      let userLogin = {userName: json.NickUserName, userId: json.UserId};
+      this.props.login(userLogin);
+      //设置模态框消失
+      this.props.setModalVisible(false);
+    } else {
+      //如果json为null，表示用户名密码不存在
+      this.setState({hasUser: '用户名或密码错误'});
+    }
   }
 }
 
