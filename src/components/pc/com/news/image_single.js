@@ -1,6 +1,7 @@
 import React from 'react';
 import {Icon} from 'antd';
-import ImageSingleComponent from './image_single_component'
+import ImageSingleComponent from './image_single_component';
+import { $api } from '@/config';
 
 export default class PCNewsImageSingle extends React.Component{
   constructor(props) {
@@ -10,8 +11,7 @@ export default class PCNewsImageSingle extends React.Component{
 
   //页面渲染之前
   componentDidMount() {
-    let fetchOption = {method: 'GET'};
-    fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=" + this.props.type + "&count=" + this.props.count, fetchOption).then(response => response.json()).then(json => this.setState({news: json}));
+    this.getNews();
   }
 
   render(){
@@ -23,5 +23,11 @@ export default class PCNewsImageSingle extends React.Component{
     return(
       <div>{newsList}</div>
     );
+  }
+
+  //获取新闻
+  async getNews(){
+    let res = await $api['apis/getnews']({type:this.props.type,count:this.props.count});
+    this.setState({news: res});
   }
 }
